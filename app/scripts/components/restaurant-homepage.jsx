@@ -1,35 +1,7 @@
 var React = require('react');
-var MenuCollection = require('../models/entree-model');
+var MenuCollection = require('../models/entree-model').MenuCollection;
+var OrderModel = require('../models/entree-model').OrderModel;
 
-
-
-var FoodItemViewComponent = React.createClass({
-  render: function(){
-
-    return (
-        <li>
-          <div>name</div>
-          <div>description</div>
-          <div>price</div>
-        </li>
-    )
-  }
-});
-
-var MenuListComponent = React.createClass({
-  render: function(){
-
-    return (
-      <div className="row">
-        <div className="menu-list col-xs-8">
-          <ul>
-            <FoodItemViewComponent />
-          </ul>
-        </div>
-      </div>
-    )
-  }
-});
 
 
 var OrderViewComponent = React.createClass({
@@ -48,6 +20,46 @@ var OrderViewComponent = React.createClass({
   }
 });
 
+var FoodItemViewComponent = React.createClass({
+  getInitialState: function(){
+    return {name: '', description: '', price: ''};
+  },
+  onClick: function(item){
+    this.props.orderModel.add(item);
+  },
+  render: function(){
+    var self = this;
+    var entree = this.props.menuCollection.map(function(item){
+      return (
+        <li>
+          <span>{item.get('name')}</span>
+          <span>{item.get('description')}</span>
+          <span>{item.get('price')}</span>
+          <button onClick={function()self.onClick(item)} value="post" className="btn btn-success">Add to Order</button>
+        </li>
+      )
+    });
+
+    return ({entree})
+  }
+});
+
+var MenuListComponent = React.createClass({
+
+  render: function(){
+
+    return (
+      <div className="row">
+        <div className="menu-list col-xs-8">
+          <ul>
+            <FoodItemViewComponent />
+          </ul>
+        </div>
+      </div>
+    )
+  }
+});
+
 
 var RestaurantHomePageComponent = React.createClass({
   getInitialState: function(){
@@ -59,6 +71,7 @@ var RestaurantHomePageComponent = React.createClass({
 
   componentWillMount: function(){
     var menuCollection = new MenuCollection();
+    var orderModel = new OrderModel();
 
     menuCollection.add([
       {'name': 'Pad Thai', 'description': 'Most famous Thai rice nooles dish. Cooked with egg, bean spouts, tofu, and sprinkled with ground peanut.', 'price': '$10.50'},
