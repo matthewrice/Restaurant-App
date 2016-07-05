@@ -15,3 +15,68 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 img {
   max-width: 100%;
 }
+
+.background-image{
+  background: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header{
+  text-align: center;
+  padding: 0;
+  margin-bottom: 40px;
+
+  .restaurant-name{
+    font-size: 50px;
+  }
+
+  .disclaimer{
+    font-size: 20px;
+    margin-top: 0;
+  }
+}
+
+.menu{
+  list-style: none;
+  padding-bottom: 10px;
+}
+
+.menu-item{
+  background-color: rgba(242,242,242,0.6);
+  color: black;
+  padding: 10px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.menu-item-name{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.menu-item-description{
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.menu-item-price{
+  font-size: 15px;
+}
+
+
+.cart{
+  background-color: rgba(242,242,242,0.6);
+  color: black;
+  height: 200px;
+
+  .cart-list{
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 0;
+  }
+}
+
+.your-order{
+  text-align: center;
+}

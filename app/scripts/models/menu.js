@@ -1,21 +1,19 @@
 var Backbone = require('backbone');
 
 
-var EntreeModel = Backbone.Model.extend({
-  idAttribute: "_id"
-});
-
-var OrderModel = Backbone.Model.extend({
-
+var MenuItem = Backbone.Model.extend({
+  displayPrice: function(){
+    return '$' + (this.get('price') / 100).toFixed(2);
+  }
 });
 
 var MenuCollection = Backbone.Collection.extend({
-  model: EntreeModel,
+  model: MenuItem,
   url: 'https://tiny-lasagna-server.herokuapp.com/collections/mattsmajesticthairestaurant/'
 });
 
 
 module.exports = {
-  'MenuCollection': MenuCollection,
-  'OrderModel': OrderModel
+  'MenuItem': MenuItem,
+  'MenuCollection': MenuCollection
 };
